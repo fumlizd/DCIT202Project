@@ -1,46 +1,104 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
   View,
+  TextInput,
   TouchableOpacity,
-  ScrollView,
+  Image,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import axios from "axios";
 
-import Product from "../components/Product";
-import { Feather } from "@expo/vector-icons";
+const Login = ({ navigation }) => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [error, setError] = useState();
 
-const Home = () => {
-  const [products, setProducts] = useState();
-
-  useEffect(() => {
-    const options = {
-      method: "GET",
-      url: "https://v1-sneakers.p.rapidapi.com/v1/sneakers",
-      params: { limit: 20 },
-      headers: {
-        "x-rapidapi-host": "v1-sneakers.p.rapidapi.com",
-        "x-rapidapi-key": "1b57056966msh11d5b7a4b809460p1ce20cjsnb4e7cb94a092",
-      },
-    };
-
-    //setting the products data back from the api to the products state
-    axios
-      .request(options)
-      .then((data) => setProducts(data.data.results))
-      .catch((err) => alert(err.message));
-  }, []);
+  const handleLogin = () => {
+    if (email && password) {
+      navigation.navigate("Home");
+    } else {
+      setError("Fill in credentials");
+    }
+  };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fcd6ff" }}>
-      <Text>Mama D's Shoes</Text>
-      <Text>Best of sneakers, all in one place</Text>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: "#f8a7ff",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <Text style={{ color: "#fff", fontSize: 30 }}>Mama D's Shop</Text>
+        <Image
+          style={{
+            width: 100,
+            height: 100,
+            borderRadius: 50,
+            marginVertical: 50,
+          }}
+          source={{
+            uri: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+          }}
+        />
+      </View>
+      {error && (
+        <View>
+          <Text style={{ fontSize: 15, color: "red" }}>{error}</Text>
+        </View>
+      )}
+      <View>
+        <TextInput
+          style={styles.input}
+          placeholder="Username"
+          name="username"
+          onChange={(text) => setEmail(text)}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          name="password"
+          secureTextEntry
+          onChange={(text) => setPassword(text)}
+        />
+      </View>
+      <View>
+        <TouchableOpacity onPress={handleLogin} style={styles.button}>
+          <Text style={{ color: "#fff", fontSize: 20 }}>Login</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
 
-export default Home;
+export default Login;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  input: {
+    backgroundColor: "#fff",
+    width: 300,
+    marginHorizontal: 30,
+    marginBottom: 20,
+    padding: 10,
+    borderRadius: 5,
+  },
+  button: {
+    backgroundColor: "#bb22a7",
+    padding: 10,
+    width: 300,
+    marginHorizontal: 30,
+    marginBottom: 20,
+    padding: 10,
+    borderRadius: 5,
+    textAlign: "center",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  search: {},
+  tabs: {},
+  tab: {},
+  scrollview: {},
+});

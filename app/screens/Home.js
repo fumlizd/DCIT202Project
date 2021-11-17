@@ -12,7 +12,6 @@ import axios from "axios";
 
 import Product from "../components/Product";
 import Nav from "../components/Nav";
-import { Feather } from "@expo/vector-icons";
 
 const Home = ({ navigation }) => {
   const [products, setProducts] = useState();

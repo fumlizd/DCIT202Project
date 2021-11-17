@@ -1,11 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const ProductDetails = () => {
+const ProductDetails = ({ route, navigation }) => {
+  const {} = route.params;
   return (
-    <View>
+    <SafeAreaView>
       <Text>Product details page</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 

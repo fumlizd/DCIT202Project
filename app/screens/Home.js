@@ -14,7 +14,7 @@ import Product from "../components/Product";
 import Nav from "../components/Nav";
 import { Feather } from "@expo/vector-icons";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [products, setProducts] = useState();
 
   useEffect(() => {
@@ -73,7 +73,9 @@ const Home = () => {
         {products &&
           products.map((product) => (
             <Product
-              submit={() => navigation.navigate(ProductDetails, { ...product })}
+              submit={() =>
+                navigation.navigate("ProductDetails", { ...product })
+              }
               key={product.id}
               image={product.media}
               price={product.retailPrice}

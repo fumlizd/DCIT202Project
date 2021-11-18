@@ -84,7 +84,7 @@ const Home = ({ navigation }) => {
             />
           ))}
       </ScrollView>
-      <Nav />
+      <Nav navigation={navigation} />
     </SafeAreaView>
   );
 };

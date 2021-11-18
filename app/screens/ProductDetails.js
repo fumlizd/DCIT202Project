@@ -93,6 +93,7 @@ const ProductDetails = ({ route, navigation }) => {
             </Text>
           </View>
           <TouchableOpacity
+            onPress={() => navigation.navigate("Cart")}
             style={{
               flex: 0.5,
               justifyContent: "center",
